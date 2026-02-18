@@ -1,0 +1,6 @@
+flask
+flask-cors
+opencv-python-headless
+Pillow
+numpy
+scikit-learn
