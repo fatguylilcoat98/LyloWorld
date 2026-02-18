@@ -28,7 +28,11 @@ export default function App() {
     formData.append('file', file);
 
     try {
-      const res = await fetch('/api/analyze', { method: 'POST', body: formData });
+      // Change this line inside the handleUpload function
+const res = await fetch("https://lyloworldz.onrender.com", { 
+  method: 'POST', 
+  body: formData 
+});
       const data = await res.json();
       setType(data.object_type);
       setGameState('PLAYING');
