@@ -20,12 +20,15 @@ def process():
         img = Image.open(io.BytesIO(base64.b64decode(img_data))).convert('RGB')
         img_np = cv2.resize(np.array(img), (32, 32))
         gray = cv2.cvtColor(img_np, cv2.COLOR_RGB2GRAY)
-        
+
         # 0=Floor, 1=Wall, 2=Hazard
         grid = [[1 if p > 150 else 0 for p in row] for row in gray]
         return jsonify({'semantic_grid': grid, 'processing_success': True})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+@app.route('/')
+def home():
+    return "LyloWorld Brain is Awake and Scanning!"
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
